@@ -11,9 +11,7 @@ using System.Reflection;
 using FluentValidation.AspNetCore;
 using MediatR;
 using MediatR.Pipeline;
-using Northwind.Application.Customers.Models;
 using Northwind.Application.Infrastructure;
-using Northwind.Application.Products.Queries;
 using Northwind.Persistence;
 using Northwind.WebApi.Filters;
 using Northwind.WebApi.Infrastructure;
@@ -36,7 +34,7 @@ namespace Northwind.WebApi
             // Add MediatR
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPreProcessorBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
-            services.AddMediatR(typeof(GetProductQueryHandler).GetTypeInfo().Assembly);
+            //services.AddMediatR(typeof(GetProductQueryHandler).GetTypeInfo().Assembly);
             // Add DbContext using SQL Server Provider
             services.AddDbContext<NorthwindDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("NorthwindDatabase")));
@@ -46,12 +44,9 @@ namespace Northwind.WebApi
             services.AddLogging(loggingBuilder => { loggingBuilder.AddSeq(); });
             // Mvc + Custom Exception Filter
             services
-                .AddMvc(options =>
-                {
-                    options.Filters.Add(typeof(CustomExceptionFilterAttribute));
-                })
-                .AddFluentValidation(fv =>
-                    fv.RegisterValidatorsFromAssemblyContaining<CustomerDetailModel>());
+                .AddMvc(options => { options.Filters.Add(typeof(CustomExceptionFilterAttribute)); });
+            //.AddFluentValidation(fv =>
+            //fv.RegisterValidatorsFromAssemblyContaining<CustomerDetailModel>());
         }
 
         public void ConfigureContainer(ContainerBuilder builder)

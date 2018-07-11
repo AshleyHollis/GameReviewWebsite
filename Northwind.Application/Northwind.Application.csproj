@@ -18,7 +18,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Games\Commands\" />
+    <Folder Include="Games\Models\" />
+    <Folder Include="Games\Queries\" />
+    <Folder Include="Games\Validators\" />
     <Folder Include="Infrastructure\" />
+    <Folder Include="Ratings\Commands\" />
+    <Folder Include="Ratings\Models\" />
+    <Folder Include="Ratings\Queries\" />
   </ItemGroup>
 
 </Project>

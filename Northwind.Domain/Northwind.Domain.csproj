@@ -18,6 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Enumerations\" />
+    <Folder Include="Exceptions\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 
