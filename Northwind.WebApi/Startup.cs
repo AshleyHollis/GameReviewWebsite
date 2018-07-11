@@ -38,7 +38,7 @@ namespace Northwind.WebApi
             services.AddMediatR(typeof(GetAllGamesQueryHandler).GetTypeInfo().Assembly);
             // Add DbContext using SQL Server Provider
             services.AddDbContext<NorthwindDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("NorthwindDatabase")));
+                options.UseSqlServer(Configuration.GetConnectionString("GameReviews")));
             // Add Open API support (will generate specification document)
             services.AddSwagger();
             // Add Logging + Seq
