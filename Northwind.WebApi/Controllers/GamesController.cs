@@ -19,6 +19,14 @@ namespace Northwind.WebApi.Controllers
             return Mediator.Send(new GetAllGamesQuery(getAllGamesQueryParams));
         }
 
+        // GET: api/Games/5/vote
+        [HttpGet("{id}/vote/{ratingValue}")]
+        [ProducesResponseType(typeof(GameViewModel), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> Vote(int id, int ratingValue)
+        {
+            return Ok(await Mediator.Send(new VoteGameCommand(id, ratingValue)));
+        }    
+
         // GET: api/Games/5
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(GameViewModel), (int)HttpStatusCode.OK)]
