@@ -11,6 +11,7 @@ using System.Reflection;
 using FluentValidation.AspNetCore;
 using MediatR;
 using MediatR.Pipeline;
+using Northwind.Application.Games.Queries;
 using Northwind.Application.Infrastructure;
 using Northwind.Persistence;
 using Northwind.WebApi.Filters;
@@ -34,7 +35,7 @@ namespace Northwind.WebApi
             // Add MediatR
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPreProcessorBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehaviour<,>));
-            //services.AddMediatR(typeof(GetProductQueryHandler).GetTypeInfo().Assembly);
+            services.AddMediatR(typeof(GetAllGamesQueryHandler).GetTypeInfo().Assembly);
             // Add DbContext using SQL Server Provider
             services.AddDbContext<NorthwindDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("NorthwindDatabase")));
