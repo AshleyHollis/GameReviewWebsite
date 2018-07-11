@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Northwind.Application.Games.Commands;
 using Northwind.Application.Games.Models;
 using Northwind.Application.Games.Queries;
 using Northwind.WebApi.Infrastructure;
@@ -37,19 +38,19 @@ namespace Northwind.WebApi.Controllers
         //}
 
         // PUT: api/Games/5
-        //[HttpPut("{id}")]
-        //[ProducesResponseType(typeof(GameDto), (int)HttpStatusCode.OK)]
-        //public async Task<IActionResult> PutGame(
-        //    [FromRoute] int id,
-        //    [FromBody] UpdateGameCommand command)
-        //{
-        //    if (id != command.Game.GameId)
-        //    {
-        //        return BadRequest();
-        //    }
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(GameDto), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> PutGame(
+            [FromRoute] int id,
+            [FromBody] UpdateGameCommand command)
+        {
+            if (id != command.Game.GameId)
+            {
+                return BadRequest();
+            }
 
-        //    return Ok(await Mediator.Send(command));
-        //}
+            return Ok(await Mediator.Send(command));
+        }
 
         // DELETE: api/Games/5
         //[HttpDelete("{id}")]

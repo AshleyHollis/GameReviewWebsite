@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Games\Commands\" />
     <Folder Include="Games\Validators\" />
     <Folder Include="Infrastructure\" />
     <Folder Include="Ratings\Commands\" />
