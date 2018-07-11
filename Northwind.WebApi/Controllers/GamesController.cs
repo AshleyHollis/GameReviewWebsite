@@ -14,9 +14,9 @@ namespace Northwind.WebApi.Controllers
     {
         // GET: api/Games
         [HttpGet]
-        public Task<GamesListViewModel> GetGames()
+        public Task<GamesListViewModel> GetGames([FromQuery]GetAllGamesQueryParams getAllGamesQueryParams)
         {
-            return Mediator.Send(new GetAllGamesQuery());
+            return Mediator.Send(new GetAllGamesQuery(getAllGamesQueryParams));
         }
 
         // GET: api/Games/5
