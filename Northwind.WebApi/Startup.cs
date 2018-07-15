@@ -1,4 +1,5 @@
-﻿using Autofac;
+using System.IO;
+using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -56,7 +57,7 @@ namespace Northwind.WebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, NorthwindDbContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, NorthwindDbContext dbContext)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -71,7 +72,23 @@ namespace Northwind.WebApi
 
             app.UseMvc();
 
-            NorthwindInitializer.Initialize(context);
+            //Redirect non api calls to angular app that will handle routing of the app.    
+            app.Use(async (context, next) => {
+                await next();
+                if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value) && !context.Request.Path.Value.StartsWith("/api/"))
+                {
+                    context.Request.Path = "/index.html";
+                    await next();
+                }
+            });
+
+            // configure the app to serve index.html from /wwwroot folder    
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            // configure the app for usage as api    
+            app.UseMvcWithDefaultRoute();
+
+            NorthwindInitializer.Initialize(dbContext);
         }
     }
 }
