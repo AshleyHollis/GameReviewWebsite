@@ -1,10 +1,24 @@
+<h3>Games:</h3>
+
 <div class="row">
-  <h3>Games:</h3>
-  <ul>
-    <li *ngFor="let g of games">
-      Title: {{ g.title }} <br/>
-      Description: {{ g.description }} <br/>
-      Rating: {{ g.rating }}
-    </li>
-  </ul>
+  <div class="col-xs-12">
+    <div class="table-responsive">
+      <table class="table table-bordered table-condensed table-striped">
+        <thead>
+          <tr>
+            <td>Game Name</td>
+            <td>Description</td>
+            <td>Rating</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let g of games">
+            <td>{{ g.title }}</td>
+            <td>{{ g.description }}</td>
+            <td>{{ g.rating }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>

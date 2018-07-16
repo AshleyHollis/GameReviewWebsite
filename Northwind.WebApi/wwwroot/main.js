@@ -41,7 +41,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-9\">\r\n    <h3>{{ title }}</h3>\r\n    <game-list></game-list>\r\n  </div>\r\n  <div class=\"col-md-3\">\r\n    <div class=\"well well-sm\">\r\n      <h3>Place holder</h3>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-2\"></div>\r\n  <div class=\"col-md-8\">\r\n    <h3>{{ title }}</h3>\r\n    <game-list></game-list>\r\n  </div>\r\n  <div class=\"col-md-2\"></div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -142,7 +142,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n  <h3>Games:</h3>\r\n  <ul>\r\n    <li *ngFor=\"let g of games\">\r\n      Title: {{ g.title }} <br/>\r\n      Description: {{ g.description }} <br/>\r\n      Rating: {{ g.rating }}\r\n    </li>\r\n  </ul>\r\n</div>\r\n"
+module.exports = "<h3>Games:</h3>\r\n\r\n<div class=\"row\">\r\n  <div class=\"col-xs-12\">\r\n    <div class=\"table-responsive\">\r\n      <table class=\"table table-bordered table-condensed table-striped\">\r\n        <thead>\r\n          <tr>\r\n            <td>Game Name</td>\r\n            <td>Description</td>\r\n            <td>Rating</td>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n          <tr *ngFor=\"let g of games\">\r\n            <td>{{ g.title }}</td>\r\n            <td>{{ g.description }}</td>\r\n            <td>{{ g.rating }}</td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
